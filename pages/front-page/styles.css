@@ -129,6 +129,7 @@ div.navbar ul li a:hover{
 .form-area input{
     margin: 0% 5% 0% 5%;
     flex-grow: 1;
+    min-width: 0;
 }
 
 @media only screen and (max-width: 500px) {

@@ -33,13 +33,13 @@
                     <br>
                 </div>
                 <div class="wid-1">
-                    <button style="margin:auto" onclick="lol()">hi</button>
+                    <button id="myButtonClick" style="margin:auto">hi</button>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
     <script>
-        function lol(){
+        function lol() {
             let formData = {
                 "person1": document.querySelector("#person1").value,
                 "person2": document.querySelector("#person2").value
@@ -54,11 +54,20 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
-            }).then(
-                (response) => console.log(response.text())
-            )
+            }).then(response => response.text())
+            .then(text => {
+                console.log(text);
+
+                // appending to content
+                let testElem = document.createElement("div");
+                testElem.setAttribute("class", "blob wid-1");
+                testElem.appendChild(document.createTextNode(text));
+                document.querySelector(".content").appendChild(testElem);
+            })
+            .catch(error => console.error(error));
         }
-    
+
+        document.querySelector("#myButtonClick").addEventListener("click", lol);
     </script>
 </body> 
 </html>
