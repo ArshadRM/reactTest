@@ -1,0 +1,139 @@
+html{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: url('/bgResized.png') no-repeat center center fixed;
+}
+
+iframe{
+    margin:0;
+    border:0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+.wid-1{width: 100%;}
+.wid-2{width: 50%;}
+.wid-3{width: 33%;}
+.wid-4{width: 25%;}
+.wid-s{width: 5%;}
+
+#imageOne{
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin:auto;
+}
+
+.content{
+    display: flex;
+    padding: 20px 0 20px 0;
+    width: 75%;
+    margin: auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+/* Navbar */
+
+div.navbar{
+    width: 100%;
+}
+
+div.navbar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+div.navbar ul li{
+    float: left;
+}
+
+div.navbar ul li.right{
+    float: right;
+}
+
+div.navbar ul li a{
+    display: inline-block;
+    color:white;
+    text-align: center;
+    text-decoration: none;
+    padding: 14px 16px;
+    border: 1px solid #333;
+}
+
+div.navbar ul li a.active{
+    background-color:#04AA6D;
+}
+
+div.navbar ul li a:hover{
+    background-color:#04AA6D;
+}
+
+/* blob */
+.blob{
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* flex-grow: 1; */
+    /* min-width: 450px; */
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    border: 5px solid;
+    border-color: aqua;
+}
+
+.blob h1{
+    margin: 0%;
+    text-align: center;
+}
+
+.blob p{
+    /*
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 0;
+    margin-top: 0; */
+    margin: 0;
+}
+
+.form-area{
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.form-area div{
+    display: flex;
+}
+
+.form-area input{
+    margin: 0% 5% 0% 5%;
+    flex-grow: 1;
+}
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .blob {
+        
+    }
+  }
