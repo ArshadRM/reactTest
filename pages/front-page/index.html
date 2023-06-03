@@ -40,8 +40,25 @@
     </div>
     <script>
         function lol(){
-            
+            let formData = {
+                "person1": document.querySelector("#person1").value,
+                "person2": document.querySelector("#person2").value
+            };
+
+            console.log(formData);
+
+            const url = "/";
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }).then(
+                (response) => console.log(response.text())
+            )
         }
+    
     </script>
 </body> 
 </html>

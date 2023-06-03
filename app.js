@@ -1,15 +1,25 @@
-const express = require("express");g
-//Test
+const express = require("express");
+const bodyParser = require("body-parser");
+
+
 const app = express();
 const port = 3000;
-const fs = require('fs').promises;
-let msg = "hisasa";
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/index.html");
 });
+
+app.post('/', (req, res) => {
+    console.log(req.body);
+    let data = req.body;
+    res.send('Data Received: ' + JSON.stringify(data));
+})
 
 app.get("/styles.css", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/styles.css");
