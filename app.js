@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/index.html");
 });
 
+// The API!!!
 app.post('/', (req, res) => {
     console.log(req.body);
     let data = req.body;
@@ -29,6 +30,7 @@ app.get("/bgResized.png", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/bgResized.png");
 });
 
+// EJS practice
 app.get("/message", (req,res) => {
     res.render("message", {
         message: req.socket.remoteAddress
