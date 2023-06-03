@@ -39,7 +39,9 @@
         </div>  
     </div>
     <script>
+        // This function only works correctly when called from the button, not from the console.
         function lol() {
+            // Get the data from the form bodies and turn into JSON
             let formData = {
                 "person1": document.querySelector("#person1").value,
                 "person2": document.querySelector("#person2").value
@@ -47,6 +49,7 @@
 
             console.log(formData);
 
+            // Post the data 
             const url = "/";
             fetch(url, {
                 method: "POST",
@@ -56,6 +59,7 @@
                 body: JSON.stringify(formData)
             }).then(response => response.text())
             .then(text => {
+                // Parse the Response Text
                 console.log(text);
 
                 // appending to content
@@ -66,7 +70,8 @@
             })
             .catch(error => console.error(error));
         }
-
+        
+        // Adding click event listener to the button
         document.querySelector("#myButtonClick").addEventListener("click", lol);
     </script>
 </body> 
