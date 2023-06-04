@@ -23,11 +23,11 @@
         <div class="blob wid-1">
             <div class="form-area">
                 <div class="wid-2">
-                    <input type="text" id="person1" name="person1" placeholder="name" required="required">
+                    <input type="text" id="field1" name="field1" placeholder="name" required="required">
                 </div>
                 <div class="divider"></div>
                 <div class="wid-2">
-                    <input type="text" id="person2" name="person2" placeholder="name" required="required">
+                    <input type="text" id="field2" name="field2" placeholder="name" required="required">
                 </div> 
                 <div class="wid-1">
                     <br>
@@ -38,41 +38,6 @@
             </div>
         </div>  
     </div>
-    <script>
-        // This function only works correctly when called from the button, not from the console.
-        function lol() {
-            // Get the data from the form bodies and turn into JSON
-            let formData = {
-                "person1": document.querySelector("#person1").value,
-                "person2": document.querySelector("#person2").value
-            };
-
-            console.log(formData);
-
-            // Post the data 
-            const url = "/";
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            }).then(response => response.text())
-            .then(text => {
-                // Parse the Response Text
-                console.log(text);
-
-                // appending to content
-                let testElem = document.createElement("div");
-                testElem.setAttribute("class", "blob wid-1");
-                testElem.appendChild(document.createTextNode(text));
-                document.querySelector(".content").appendChild(testElem);
-            })
-            .catch(error => console.error(error));
-        }
-        
-        // Adding click event listener to the button
-        document.querySelector("#myButtonClick").addEventListener("click", lol);
-    </script>
+    <script src="script.js"></script>
 </body> 
 </html>

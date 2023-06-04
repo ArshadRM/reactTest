@@ -19,11 +19,15 @@ app.get("/", (req, res) => {
 app.post('/', (req, res) => {
     console.log(req.body);
     let data = req.body;
-    res.send('Data Received: ' + JSON.stringify(data));
+    res.send(JSON.stringify(data));
 })
 
 app.get("/styles.css", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/styles.css");
+});
+
+app.get("/script.js", (req, res) => {
+    res.sendFile(__dirname + "/pages/front-page/script.js");
 });
 
 app.get("/bgResized.png", (req, res) => {
