@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 
 
 const app = express();
@@ -15,13 +14,6 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/index.html");
 });
 
-// The API!!!
-app.post('/', (req, res) => {
-    console.log(req.body);
-    let data = req.body;
-    res.send(JSON.stringify(data));
-})
-
 app.get("/styles.css", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/styles.css");
 });
@@ -34,12 +26,52 @@ app.get("/bgResized.png", (req, res) => {
     res.sendFile(__dirname + "/pages/front-page/bgResized.png");
 });
 
-// EJS practice
-app.get("/message", (req,res) => {
-    res.render("message", {
-        message: req.socket.remoteAddress
-    })
+//// "API" section here
+
+// Payment Initialization
+app.post('/paymentInitiation', (req, res) => {
+    console.log(req.body);
+    let data = req.body;
+    console.log(data);
+    let response = {
+        "PaymentInitiationTransaction": {
+          "RecurringPaymentRecord": "string",
+          "RecurringPaymentCustomerReference": "string",
+          "RecurringPaymentReference": "string",
+          "DateType": "string",
+          "PaymentFeesCharges": "string",
+          "DocumentDirectoryEntryInstanceReference": "string",
+          "AccountNumber": data.PaymentInitiationTransaction.AccountNumber,
+          "PreviousBalance": "100",
+          "CurrentBalance": "100",
+        }
+    };
+    // data.PaymentInitiationTransaction.Amount is second user input
+    res.send(JSON.stringify(response));
 })
+
+//Direct Debit Mandate
+app.post('/directDebitMandate', (req, res) => {
+    console.log(req.body);
+    let data = req.body;
+    console.log(data);
+    let response = {
+        "PaymentInitiationTransaction": {
+          "RecurringPaymentRecord": "string",
+          "RecurringPaymentCustomerReference": "string",
+          "RecurringPaymentReference": "string",
+          "DateType": "string",
+          "PaymentFeesCharges": "string",
+          "DocumentDirectoryEntryInstanceReference": "string",
+          "AccountNumber": data.PaymentInitiationTransaction.AccountNumber,
+          "PreviousBalance": "100",
+          "CurrentBalance": "100",
+        }
+    };
+    res.send(JSON.stringify(response));
+})
+
+
 
 app.listen(port, () =>{
     console.log(`App running on http://localhost:${port}`);
