@@ -41,7 +41,7 @@ async function paymentInitiationAPILogic(){
         // Parse the Response Text
         console.log(text);
         let JSONresponse = JSON.parse(text)
-        console.log(JSONresponse);
+        console.log(JSON.stringify(JSONresponse, null, 2));
         // let { field1 , field2 } = JSONresponse;
         
         let accNum = JSONresponse.PaymentInitiationTransaction.AccountNumber;
@@ -50,11 +50,11 @@ async function paymentInitiationAPILogic(){
 
         // appending to content
         serverResponseText = `Account Number: ${accNum}\tPrevious Balance: ${prevBal}\tCurrent Balance: ${currBal}`;
-		addResponseBlob(serverResponseText, "Payment Initiation");
+		addResponseBlob(serverResponseText, "Payment Initiation", formData, JSONresponse);
     })
     .catch(error => {
         console.error(error);
-        addResponseBlob(error, "Payment Initiation");
+        addResponseBlob(error, "Payment Initiation",);
     });
 }
 
@@ -99,7 +99,7 @@ async function directDebitMandateAPILogic(){
         // Parse the Response Text
         console.log(text);
         let JSONresponse = JSON.parse(text)
-        console.log(JSONresponse);
+        console.log(JSON.stringify(JSONresponse, null, 2));
         // let { field1 , field2 } = JSONresponse;
         
         let accNum = JSONresponse.PaymentInitiationTransaction.AccountNumber;
@@ -108,7 +108,7 @@ async function directDebitMandateAPILogic(){
 
         // appending to content
         serverResponseText = `Account Number: ${accNum}\tPrevious Balance: ${prevBal}\tCurrent Balance: ${currBal}`;
-		addResponseBlob(serverResponseText, "Direct Debit Mandate");
+		addResponseBlob(serverResponseText, "Direct Debit Mandate", formData, JSONresponse);
     })
     .catch(error => {
         console.error(error);
@@ -164,7 +164,7 @@ async function ageAPILogic(){
 
 */
 
-const addResponseBlob = (inputText, apiName) => {
+const addResponseBlob = (inputText, apiName, reqJSON, resJSON) => {
     // Make the blob div first
     let elemInMem = document.createElement("div");
     elemInMem.setAttribute("class", "blob wid-1");
@@ -177,7 +177,36 @@ const addResponseBlob = (inputText, apiName) => {
     // Constructing the full blob and pushing it to content
     elemInMem.appendChild(apiCountText);
     elemInMem.appendChild(document.createTextNode(inputText));
+    
+    if(reqJSON != undefined){
+        let tempJsonElem = document.createElement("div");
+        tempJsonElem.setAttribute("class", "wid-2");
+        tempJsonElem.setAttribute("style", "float:left");
+
+        let tempLabel = document.createElement("pre");
+        tempLabel.appendChild(document.createTextNode("Client Request JSON"));
+        tempJsonElem.appendChild(tempLabel);
+
+        tempJsonElem.appendChild(renderjson(reqJSON));
+        elemInMem.appendChild(tempJsonElem);
+    }
+
+    if(resJSON != undefined){
+        let tempJsonElem = document.createElement("div");
+        tempJsonElem.setAttribute("class", "wid-2");
+        tempJsonElem.setAttribute("style", "float:right");
+
+        let tempLabel = document.createElement("pre");
+        tempLabel.appendChild(document.createTextNode("Server Response JSON"));
+        tempJsonElem.appendChild(tempLabel);
+
+        tempJsonElem.appendChild(renderjson(resJSON));
+        elemInMem.appendChild(tempJsonElem);
+    }
+
     document.querySelector(".content").appendChild(elemInMem);
+    
+
 }
 
 
