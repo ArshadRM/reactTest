@@ -178,30 +178,36 @@ const addResponseBlob = (inputText, apiName, reqJSON, resJSON) => {
     elemInMem.appendChild(apiCountText);
     elemInMem.appendChild(document.createTextNode(inputText));
     
-    if(reqJSON != undefined){
-        let tempJsonElem = document.createElement("div");
-        tempJsonElem.setAttribute("class", "wid-2");
-        tempJsonElem.setAttribute("style", "float:left");
+    if(reqJSON != undefined || resJSON != undefined){
+        let tempUnlinkedList = document.createElement("ul");
+        tempUnlinkedList.setAttribute("style", "list-style-type: none;margin: 0;padding: 0;overflow: hidden;");
 
-        let tempLabel = document.createElement("pre");
-        tempLabel.appendChild(document.createTextNode("Client Request JSON"));
-        tempJsonElem.appendChild(tempLabel);
+        if(reqJSON != undefined){
+            let tempJsonElem = document.createElement("li");
+            tempJsonElem.setAttribute("class", "wid-2");
+            tempJsonElem.setAttribute("style", "float:left");
 
-        tempJsonElem.appendChild(renderjson(reqJSON));
-        elemInMem.appendChild(tempJsonElem);
-    }
+            let tempLabel = document.createElement("pre");
+            tempLabel.appendChild(document.createTextNode("Client Request JSON"));
+            tempJsonElem.appendChild(tempLabel);
 
-    if(resJSON != undefined){
-        let tempJsonElem = document.createElement("div");
-        tempJsonElem.setAttribute("class", "wid-2");
-        tempJsonElem.setAttribute("style", "float:right");
+            tempJsonElem.appendChild(renderjson(reqJSON));
+            tempUnlinkedList.appendChild(tempJsonElem);
+        }
 
-        let tempLabel = document.createElement("pre");
-        tempLabel.appendChild(document.createTextNode("Server Response JSON"));
-        tempJsonElem.appendChild(tempLabel);
+        if(resJSON != undefined){
+            let tempJsonElem = document.createElement("li");
+            tempJsonElem.setAttribute("class", "wid-2");
+            tempJsonElem.setAttribute("style", "float:right");
 
-        tempJsonElem.appendChild(renderjson(resJSON));
-        elemInMem.appendChild(tempJsonElem);
+            let tempLabel = document.createElement("pre");
+            tempLabel.appendChild(document.createTextNode("Server Response JSON"));
+            tempJsonElem.appendChild(tempLabel);
+
+            tempJsonElem.appendChild(renderjson(resJSON));
+            tempUnlinkedList.appendChild(tempJsonElem);
+        }
+        elemInMem.appendChild(tempUnlinkedList);
     }
 
     document.querySelector(".content").appendChild(elemInMem);
